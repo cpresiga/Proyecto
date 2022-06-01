@@ -1,0 +1,29 @@
+es:
+  activerecord:
+    models:
+      user:
+        one: 'Usuario'
+        other: 'Usuarios'
+    attributes:
+      user:
+        name: 'Nombre'
+        email: 'Correo Electronico'
+        password: 'contraseña'  
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: 'Este campo es requerido'
+            email:
+              blank: 'Este campo es requerido'
+              taken: 'Correo electronico ya existe'
+            password: 
+              blank: 'Este campo es requerido'
+  helpers:
+    submit:
+      user:
+        create: "Guardar"
+  user:
+    errors: 'Upps! algo salio mal'
+  

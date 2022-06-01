@@ -1,0 +1,86 @@
+<div class="container">
+	<br />
+	<div class="row justify-content-center">
+		<div class="col-12 col-md-10 col-lg-8">
+			<form class="card card-sm" action="/search">
+				<div class="card-body row no-gutters align-items-center">
+					<div class="col-auto">
+						<i class="fas fa-search h4 text-body"></i>
+					</div>
+					<!--end of col-->
+					<div class="col">
+						<input class="form-control form-control-lg form-control-borderless" type="search"
+							placeholder="Search topics or keywords" name="q">
+					</div>
+					<!--end of col-->
+					<div class="col-auto">
+						<button class="btn btn-lg btn-success" type="submit">Search</button>
+					</div>
+					<!--end of col-->
+				</div>
+			</form>
+		</div>
+		<!--end of col-->
+	</div>
+</div>
+
+<br>
+<hr>
+<h3 class='text-center'>Article List</h3>
+
+<div class='container'>
+<%= link_to 'New Article', new_article_path, class:'btn btn-outline-dark btn-sm' %>
+<%= link_to 'Return', articles_path, class:'btn btn-outline-dark btn-sm' %>
+</div>
+<div class="container">
+<div class="row ng-scope">
+    <div class="col-md-10 col-md-pull-3">
+        <p class="search-results-count"> <%= @query_count %> results</p>
+        <% @articles.each do |article| %>
+        <section class="search-result-item">
+            <% if article.logo.attached? %>
+            <a class="image-link" href="#"> <%= image_tag article.logo, class:'image'%> </a>
+            <% else %>
+            <a class="image-link" href="#"><img class="image" src="https://bootdey.com/img/Content/avatar/avatar1.png"> </a>
+            <% end %>
+            <div class="search-result-item-body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <h4 class="search-result-item-heading"><%= link_to article.title, article %></h4>
+                        <% if article.user_id != nil %>
+                            <p class="info"> Autor: <%= name_user(article.user_id).name %> </p>
+                        <% else %>
+                            <p class="info"> Autor: Unknown </p>
+                        <% end %>
+                        <p class="description"> <%= article.body %> </p>
+                    </div>
+                    <div class="col-sm-3 text-align-center">
+                        <p class="value3 mt-sm"> <%= article.category %></p>
+                        <%= link_to 'Learn more', article, class:'btn btn-outline-dark btn-sm' %>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <% end %>
+        <hr>
+        <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+    <div class="col-md-2 col-md-push-9">
+    <h6>Results <span class="fw-semi-bold">(No working)Filtering</span></h6>
+    <p class="text-muted fs-mini">Listed content is categorized by the following groups:</p>
+    <ul class="nav nav-pills nav-stacked search-result-categories mt">
+        <li><a href="#">Friends <span class="badge">34</span></a>
+        </li>
+        <li><a href="#">Pages <span class="badge">9</span></a>
+        </li>
+        <li><a href="#">Images</a>
+        </li>
+        <li><a href="#">Groups</a>
+        </li>
+        <li><a href="#">Globals <span class="badge">18</span></a>
+        </li>
+    </ul>
+</div>
+</div>
+</div>
+

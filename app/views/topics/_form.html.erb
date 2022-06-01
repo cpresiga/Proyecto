@@ -1,0 +1,59 @@
+<%= form_with(model: [@course, topic], local: true) do |form| %>
+  <% if topic.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <ul>
+        <% topic.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="container">
+  <div class="container">
+
+
+  <div class="container">
+  <div class="row">
+      <div class="col-4">
+          <div>
+            <%= form.label :title %> <br>
+            <%= form.text_field :title, class:'form-control', placeholder:'Topic title' %>
+          </div>
+        </div>
+        <div class="col-4">
+            <div>
+              <%= form.label :video_url %> <br>
+              <%= form.text_field :video_url, class:'form-control', placeholder:'Youtube url code' %>
+            </div>
+        </div>
+        <div class="col-4">
+          <div>
+            <%= form.label :labels %> <br>
+            <%= form.text_field :labels, class:'form-control', placeholder:'Topic labels' %>
+          </div>
+        </div>
+    </div>
+  </div>
+    <hr>
+    <div>
+      <%= form.label :about_topic %> <br>
+      <%= form.text_field :about_topic, class:'form-control', placeholder:'Topic short description' %>
+    </div>
+    <hr>
+    <div>
+      <%= form.label :topic_notes %> <br>
+      <%= form.rich_text_area :topic_notes, class:'form-control', placeholder:'Topic notes' %>
+    </div>
+  </div>
+</div>
+
+<br>
+<center>
+  <div class="actions">
+    <%= form.submit class:'btn btn-outline-dark' %>
+  </div>
+</center>
+
+<% end %>

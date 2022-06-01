@@ -1,0 +1,2 @@
+class ChallengeLog < ApplicationRecord
+end

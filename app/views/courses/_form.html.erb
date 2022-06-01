@@ -1,0 +1,111 @@
+<%= form_with(model: course) do |form| %>
+  <% if course.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+        <ul>
+          <% course.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+    </div>
+  <% end %>
+
+  <div class="container">
+
+    <div class="container">
+      <div>
+          <%= form.label :name %> <br>
+          <%= form.text_field :name, class:'form-control', placeholder:'Course name' %>
+      </div>
+    </div>
+
+    <div class="container">
+      <div>
+          <%= form.label :description %> <br>
+          <%= form.text_area  :description, class:'form-control', placeholder:'Course description' %>
+      </div>
+    </div>
+
+    <div class="container">
+      <div>
+          <%= form.label :short_description %> <br>
+          <%= form.text_field :short_description, class:'form-control', placeholder:'Course short description' %>
+      </div>
+    </div>
+    
+
+    <div class="container">
+      <div class="row">
+          <div class="col-4">
+              <div>
+                  <%= form.label :course_logo %> <br>
+                  <%= form.file_field :course_logo, class:'form-control', type:'file' %>
+              </div>
+            </div>
+            <div class="col-4">
+                <div>
+                  <%= form.label :level %> <br>
+                  <%= form.select :level, ["Dommie", "Intermediate", "Senior", "Gurú"], {}, class:'form-control' %>
+                </div>
+            </div>
+            <div class="col-4">
+              <div>
+                <%= form.label :category %> <br>
+                <%= form.select :category, ["Programming Basics", "Web Development", "Theory"], {}, class:'form-control' %>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="container">
+      <div class="row">
+            <div class="col-4">
+                <div>
+                  <%= form.label :video_url %> <br>
+                  <%= form.text_field :video_url, class:'form-control', placeholder:'Youtube url code' %>
+                </div>
+            </div>
+            <div class="col-4">
+                <div>
+                  <%= form.label :hours %> <br>
+                  <%= form.text_field :hours, class:'form-control', placeholder:'Approximate course hours' %>
+                </div>
+            </div>
+
+            <div class="col-4">
+              <div>
+                <%= form.label :labels %> <br>
+                <%= form.text_field :labels, class:'form-control', placeholder:'Curse labels' %>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div>
+                  <%= form.label :teacher_name %> <br>
+                  <%= form.text_field :teacher_name, class:'form-control', placeholder:'Teacher full name' %>
+                </div>
+            </div>
+            <div class="col-8">
+                <div>
+                  <%= form.label :teacher_description %> <br>
+                  <%= form.text_area  :teacher_description, class:'form-control', placeholder:'Teacher description' %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+   <br><br>
+  <center>
+    <div class='container'>
+      <%= form.submit class:'btn btn-outline-dark'%>
+    </div>
+  </center>
+     
+<% end %>

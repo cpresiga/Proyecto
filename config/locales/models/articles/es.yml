@@ -1,0 +1,27 @@
+es:
+  activerecord:
+    models:
+      article: 
+        one: Articulo
+        other: Articulos
+    attributes:
+      article:
+        title: 'Titulo'
+        body: 'Descrición'
+        category: 'Categoria'
+        description: 'Descripción'
+  articles:
+    new:
+      title: 'Crear nuevo %{model}'
+  helpers:
+    submit:
+      article:
+        create: 'Registrar %{model}'
+        update: 'Actualizar %{model}'
+
+en:
+  articles:
+    new:
+      title: 'Register %{model}'
+    edit:
+      title: 'Update %{model}'

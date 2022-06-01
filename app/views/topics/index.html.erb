@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Topics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Lessons number</th>
+      <th>Evaluation status</th>
+      <th>Course</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td><%= topic.title %></td>
+        <td><%= topic.lessons_number %></td>
+        <td><%= topic.evaluation_status %></td>
+        <td><%= topic.course.name %></td>
+        <td><%= link_to 'Show Cpourse', [@course] %></td>
+        <td><%= link_to 'Edit Topic', edit_course_topic_path(@course, topic) %></td>
+        <td><%= link_to 'Destroy  Topic', [@course, topic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+<%= link_to 'New Topic', new_course_topic_path(@course) %>

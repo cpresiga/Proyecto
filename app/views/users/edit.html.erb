@@ -1,0 +1,54 @@
+
+<br>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <h1> Editar usuario </h1>
+    <%= form_with model: @user do |form| %>
+
+        <% if @user.errors.any? %>
+            <p> <%= t 'user.errors'%></p>
+        <% end %>
+    
+        <div>
+        <%= form.label :name %> <br>
+        <%= form.text_field :name, class:'form-control', placeholder:'Enter your full name' %> <br>
+        <% if @user.errors[:name].any? %>
+            <div> <%= @user.errors[:name].first %></div>
+        <% end %>
+        </div>
+        
+        <div>
+        <%= form.label :email %> <br>
+        <%= form.text_field :email, class:'form-control', placeholder:'example@mail.com', type:'email' %> <br>
+        <% if @user.errors[:email].any? %>
+            <div> <%= @user.errors[:email].first %> </div>
+        <% end %>
+        </div>
+    
+        <div>
+        <%= form.label :password %> <br>
+        <%= form.password_field :password, class:'form-control', type:'password', placeholder:'Password'%> <br>  
+        <% if @user.errors[:password].any? %>
+            <div> <%= @user.errors[:password].first %></div>
+        <% end %> 
+        </div>
+    
+        <div>
+        <%= form.label :avatar %> <br>
+        <%= form.file_field :avatar, class:'form-control', type:'file' %> <br>  
+        </div>
+    
+        <div>
+        <%= form.submit class:'btn btn-outline-dark' %>
+        </div>
+    
+    <% end %>
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
+</div>

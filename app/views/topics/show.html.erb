@@ -1,0 +1,136 @@
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<div class="width=80%">
+  <div class="resp-iframe">
+    <div class="resp-iframe__container">
+      <iframe class="resp-iframe__embed" width="560" height="315"
+        src="<%= @topic_video_url %>" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="contenedor" style="margin-left: 15px">
+  <%= link_to '←  Back', course_path(@course), class:'btn btn-outline-success rounded-pill'%>
+</div>
+<!-- BODY -->
+
+<div class="row d-flex contenedor_topic">
+    <div class="col-md-8 col-lg-4 m-3">
+      <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+        <div class="card-body p-4">
+          <center><h4>CHALLENGES</h4></center>
+          <% if !user_signed_in? %>
+            <p> <b>Para realizar los retos tienes que registrarte o iniciar sesión* </b></p>
+          <% end %>
+          <% for challenge in @topic.challenges %>
+            <div class="card mb-2">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex flex-row align-items-center">
+                  <img src="https://thumbs.dreamstime.com/b/challenge-icon-objective-160884169.jpg" alt="..." class="rounded-circle shadow-1-strong me-3 img_title_topic">
+                      <p class="mb-0 ms-2"><b> <%= challenge.name %></b></p>
+                  </div>
+                  <div class="d-flex flex-row align-items-center text-primary">
+                      <i class="fas fa-thumbs-up mx-2 fa-xs" style="margin-top: -0.16rem;"></i>
+                      <% if user_signed_in? %>
+                        <% if  ChallengeLog.find_by( challenge_id: challenge.id ) and ChallengeLog.find_by(user_id: return_user.id) %>
+                          <%= link_to '👍', course_topic_challenge_path(@course,@topic,challenge), class:'btn btn-success', style:'color:white;' %>
+                        <% else %>
+                          <%= link_to '👎 Try', course_topic_challenge_path(@course,@topic,challenge), class:'btn btn-danger', style:'color:white;' %>
+                        <% end %>
+                      <% else %>
+                      <%= link_to '👎 Try', course_topic_challenge_path(@course,@topic,challenge), class:'btn btn-danger disabled', style:'color:white;' %>
+                      <% end %>
+                  </div>
+                </div>
+
+                <% if user_signed_in? %>
+                <% if return_user.admin.to_i == 1 %>
+                  <%= link_to 'Edit', edit_course_topic_challenge_path(@course,@topic,challenge), class:'btn btn-success btn-sm', style:'color:white' %>
+                  <%= link_to 'Destroy', [@course, @topic, challenge], method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-sm', style:'color:white' %>
+                <% end %>
+              <% end %>
+              </div>
+           </div>
+          <% end %>
+          <% if user_signed_in? %>
+            <% if return_user.admin.to_i == 1 %>
+              <center>
+                <%= link_to 'Add challenge', new_course_topic_challenge_path(@course, @topic), class:'btn btn-outline-dark btn-sm' %>
+              </center>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="card-body p-4">
+          <center><h4>LIST OF TOPICS</h4></center>
+          <% @topics.each do |topic| %>
+            <div class="card mb-2">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex flex-row align-items-center">
+                  <img src="https://img.freepik.com/free-vector/video-design-abstract-concept-illustration_335657-2138.jpg?w=2000" alt="..." class="rounded-circle shadow-1-strong me-3 img_title_topic">
+                      <p class="mb-0 ms-2"><b> <%= topic.title %> </b> </p>
+                      <% if user_signed_in? %>
+                        <% if (TopicLog.find_by(user_id: return_user.id) and TopicLog.find_by(topic_id: topic.id)) %>
+                          <p class="mb-0 ms-2" style="color:green"> Compreted!</p>
+                        <% end %>
+                      <% end %>
+                  </div>
+                  <div class="d-flex flex-row align-items-center text-primary">
+                    <% if ( topic.id == params[:id].to_i) %>
+                      <%= link_to 'Seen', course_topic_path(@course,topic), class:'btn btn-warning', style:'color:white;' %>
+                    <% else %>
+                      <%= link_to 'Play', course_topic_path(@course,topic), class:'btn btn-primary', style:'color:white;' %>
+                    <% end %>
+                  </div>
+                </div>  
+              </div>
+           </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-lg-7 m-3">
+    <div class="card shadow-0 border border-white">
+      <div class="card-body p-4">
+            <div class="container">
+            <div class="row">
+              <div class="col-lg-1">
+              <img src="https://cdn.iconscout.com/icon/free/png-256/post-46-1107671.png" alt="..." class="rounded-circle shadow-1-strong me-3 img_title_topic">
+              </div>
+              <div class="col-sm">
+                 <h3><%= @topic.title %></h3>
+                 <% if( user_signed_in? ) %>
+                    <% if (@bandera == true) %>
+                     <div class="progress" style='width:80%'>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">Completed</div>
+                     </div>
+                    <% else %>
+                      <div class="progress" style='width:80%'>
+                        <div class="progress-bar" role="progressbar" style="width: <%=@prom%>%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><%=@prom%> %</div>
+                      </div>
+                    <% end %> 
+                 <% end %> 
+              </div>
+            </div>
+            <br>
+            <div class="container">
+              <p> <b>About topic: </b> <%= @topic.about_topic %></p>
+            </div>
+          </div>
+          <hr>  
+          <div class="trix-content">
+            <%= @topic.topic_notes %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

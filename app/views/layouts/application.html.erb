@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Learning Environment</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #6351ce !important">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="color:white" href="/"><b>Learning Environment</b></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <div class='container'>
+          <li class="nav-item" style="margin-top: 3px">  
+            <%= link_to('Articles', articles_path, class: 'btn btn-light rounded-pill', style:'color: #1c2331; background-color: white !important') %>
+            <%= link_to('Courses', courses_path, class: 'btn btn-light rounded-pill', style:'color:#1c2331; background-color: white !important') %>
+          </li>  
+        </div>
+        <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+        
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if name_user(return_user.id).avatar.attached?%>
+            <%= image_tag name_user(return_user.id).avatar, height: 35, width: 35, class: "rounded-circle" %>
+            <% end %>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to('Profile', profile_path, class: 'dropdown-item') %>
+            <%= link_to('Create Article', new_article_path, class: 'dropdown-item') %>
+            <div class="dropdown-divider"></div>
+            <%= link_to('LogOut', logout_path, class: 'dropdown-item') %>
+          </div>
+        </li> 
+        <%else%>
+          <li class="nav-item">
+            <%= link_to('Login', login_path, class: 'nav-link', style: "font-size: 15px;color: white; margin-top: 9%; font-weight: bold") %>
+          </li>
+          <li class="nav-item">
+            <%= link_to('SignUp', signup_path, class: 'nav-link', style: "font-size: 15px; color: white; margin-top: 8%; font-weight: bold") %>
+          </li>  
+        <% end %>
+      </ul> 
+    </div>
+  </div>
+  </nav>
+
+    <%= yield %>
+
+
+    <br>
+      <!-- Footer -->
+      <footer
+              class="text-center text-lg-start text-white"
+              style="background-color: #1c2331"
+              >
+        <!-- Section: Social media -->
+        <section
+                 class="d-flex justify-content-between p-4"
+                 style="background-color: #6351ce"
+                 >
+          <!-- Left -->
+          <div class="me-5">
+            <span> <b>ENTORNO VIRTUAL DE APRENDIZAJE</b> </span>
+          </div>
+          <!-- Left -->
+    
+          <!-- Right -->
+          <div>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+    
+        <!-- Section: Links  -->
+        <section class="">
+          <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase fw-bold">CAMILO PRÉSIGA HIDALGO</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                <p>
+                Student systems technology
+                </p>
+              </div>
+              <!-- Grid column -->
+    
+              <!-- Grid column -->
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold">SOCIAL NETWORKS</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                <p>
+                  <a href="https://www.facebook.com/" target="_blank" class="text-white">Facebook</a>
+                </p>
+                <p>
+                  <a href="https://www.linkedin.com/" target="_blank" class="text-white">Linkedin</a>
+                </p>
+                <p>
+                  <a href="https://github.com/" target="_blank" class="text-white">Github</a>
+                </p>
+              </div>
+    
+              <!-- Grid column -->
+              
+              <!-- Grid column -->
+    
+              <!-- Grid column -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold">Contact</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"
+                    />
+                <p><i class="fas fa-home mr-3"></i> Colombia, Antioquia, Medellín</p>
+                <p><i class="fas fa-envelope mr-3"></i> cpresiga@tdea.edu.co</p>
+                <p><i class="fas fa-phone mr-3"></i> + 57 311 684 5279</p>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+          </div>
+        </section>
+        <!-- Section: Links  -->
+    
+        <!-- Copyright -->
+        <div
+             class="text-center p-3"
+             style="background-color: rgba(0, 0, 0, 0.2)"
+             >
+          Licencia: 
+          <a class="text-white" href="https://dspace.tdea.edu.co/handle/tda/1"
+             >Trabajo de grado - Tecnológico de Antioquia (TDEA)</a
+            >
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <!-- Footer -->
+  
+  </body>
+</html>

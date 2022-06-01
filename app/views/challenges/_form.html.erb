@@ -1,0 +1,46 @@
+<%= form_with(model: [@course, @topic, challenge]) do |form| %>
+
+<% if challenge.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+      <ul>
+        <% challenge.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
+
+
+<div class="container">
+
+<div class="container">
+  <br>
+  <div>
+      <%= form.label :name %> <br>
+      <%= form.text_field :name, class:'form-control', placeholder:'Challenge name' %>
+  </div>
+  <hr>
+  <div>
+    <%= form.label :challenge_description %> <br>
+    <%= form.text_field :challenge_description, class:'form-control', placeholder:'Challenge descriptiton' %>
+  </div>
+  <hr>
+  <div>
+    <%= form.label :output_description %> <br>
+    <%= form.text_field :output_description, class:'form-control', placeholder:'Challange output description' %>
+  </div>
+  <hr>
+  <div>
+    <%= form.label :output %> <br>
+    <%= form.text_field :output, class:'form-control', placeholder:'Challange output' %>
+  </div>
+</div>
+
+</div>
+  <br>
+  <center>
+    <div class="actions">
+      <%= form.submit class:'btn btn-outline-dark' %>
+    </div>
+  </center>
+<% end %>

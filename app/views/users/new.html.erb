@@ -1,0 +1,70 @@
+
+<br>
+<br>
+ 
+<% if @user.errors.any? %>
+
+<div class="alert alert-danger" role="alert">
+<p> <%= t 'user.errors'%></p>
+
+<div>
+    <% if @user.errors[:name].any? %>
+        <spam> • User Name <%= @user.errors[:name].first %></spam>
+    <% end %> 
+</div>
+
+<div>
+    <% if @user.errors[:email].any? %>
+        <spam> • User Mail <%= @user.errors[:email].first %></spam>
+    <% end %> 
+</div>
+
+<div>
+    <% if @user.errors[:password].any? %>
+        <spam> • User Password <%= @user.errors[:password].first %></spam>
+    <% end %> 
+</div>
+</div>
+<% end %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <h1 class="text-center"> <%= t(".singup") %></h1>
+
+    <%= form_with model: @user do |form| %>
+
+        <div>
+        <%= form.label :name %> <br>
+        <%= form.text_field :name, class:'form-control', placeholder:'Enter your full name' %> <br>
+        </div>
+        
+        <div>
+        <%= form.label :email %> <br>
+        <%= form.text_field :email, class:'form-control', placeholder:'example@mail.com', type:'email' %> <br>
+        </div>
+    
+        <div>
+        <%= form.label :password %> <br>
+        <%= form.password_field :password, class:'form-control', type:'password', placeholder:'Password'%> <br>  
+        </div>
+    
+        <div>
+        <%= form.label :avatar %> <br>
+        <%= form.file_field :avatar, class:'form-control', type:'file' %> <br>  
+        </div>
+    
+        <div>
+        <%= form.submit class:'btn btn-outline-dark' %>
+        </div>
+    
+    <% end %>
+    </div>
+    <div class="col-sm">
+    <br><br>
+    <img src="https://www.login.gov/assets/img/how-it-works1@2x.png" class="img-fluid" alt="Responsive image">
+    <img src="https://www.login.gov/assets/img/how-it-works2@2x.png" class="img-fluid" alt="Responsive image">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="row d-flex">
+    <div class="col-md-8 col-lg-4 m-3">
+      <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+        <div class="card-body p-4">
+            <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+            <p>
+                <%= form.label :body %><br>
+                <%= form.text_area :body, class:'form-control' %>
+            </p>
+            <p>
+                <%= form.submit class:'btn btn-outline-dark'%>
+            </p>
+          <% end %>
+        </div>
+        <div class="card-body p-4">
+        <% @article_comment.each do |comment| %>
+          <% if comment.user!=nil %>
+          <div class="card mb-2">
+          <div class="card-body">
+              <p><%= comment.body %></p>
+              <div class="d-flex justify-content-between">
+              <div class="d-flex flex-row align-items-center">
+                  <% if name_user(comment.user).avatar.attached?%>
+                      <%= image_tag name_user(comment.user).avatar, class:'rounded-circle shadow-1-strong me-3',width:25, height:25, alt:"avatar"%>
+                  <% end %>
+                  <p class="small mb-0 ms-2"><b><%=name_user(comment.user).name%></b></p>
+              </div>
+              <div class="d-flex flex-row align-items-center text-primary">
+                  <p class="small mb-0"> <%= comment.created_at %></p>
+                  <i class="fas fa-thumbs-up mx-2 fa-xs" style="margin-top: -0.16rem;"></i>
+                  <p class="small mb-0">2</p>
+              </div>
+              </div>
+          </div>
+        </div>
+          <% end %>
+      <% end %>
+    <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+  </div>
+</div>
+
+    <div class="col-md-8 col-lg-7 m-3">
+    <div class="card shadow-0 border border-white">
+      <div class="card-body p-4">
+        <% if @article.user_id!=nil %>
+            <div class="container">
+            <div class="row">
+              <div class="col-lg-1">
+                <% if name_user(@article.user_id).avatar.attached?%>
+                  <%= image_tag name_user(@article.user_id).avatar, class:'rounded-circle shadow-1-strong me-3',width:40, height:40, alt:"avatar"%>
+                <% end %>
+              </div>
+              <div class="col-sm">
+                 <h3><%=name_user(@article.user_id).name%></h3> 
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <% if user_signed_in?  %>
+            <% if (@article.user_id == current_user.id) or (current_user.admin.to_i == 1) %>
+                <div class="container">
+                  <%= link_to 'Edit', edit_article_path(@article), class:'btn btn-outline-success rounded-pill' %>
+                  <%= link_to 'Delete', article_path(@article), class:'btn btn-outline-success rounded-pill',method: :delete, data: {comfirm: "Are you sure?"} %>
+                </div>
+            <% end %>    
+          <% end %>
+          <hr>  
+          <h1><%= @article.title %></h1>
+          <% if !@article.description.empty? %>
+          <h5><%= @article.description %></h5>
+          <% end %> 
+      </div>
+    </div>
+  </div>
+</div>

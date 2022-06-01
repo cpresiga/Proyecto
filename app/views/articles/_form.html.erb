@@ -1,0 +1,70 @@
+<%= form_with model: @article do |form| %>
+
+    <% if @article.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+        <p> <%= t 'article.errors'%></p>
+
+        <div>
+        <% if @article.errors[:title].any? %>
+            <spam> • Article Title <%= @article.errors[:title].first %></spam>
+        <% end %> 
+        </div>
+
+        <div>
+        <% if @article.errors[:body] %>
+            <spam> • Article Body <%= @article.errors[:body].first %></spam>
+        <% end %>
+        </div>
+
+        <div>
+        <% if @article.errors[:description] %>
+            <spam> • Description <%= @article.errors[:description].first %></spam>
+        <% end %>
+        </div>
+
+        </div>
+    <% end %>
+
+    <div class="container">
+        <div class="container">
+            <div>
+                <%= form.label :title %> <br>
+                <%= form.text_field :title, class:'form-control', placeholder:'Article`s title' %>
+            </div>
+        <div>
+            <%= form.label :body %> <br>
+            <%= form.text_area :body, class:'form-control', placeholder:'Article`s Abstract'%> 
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <div>
+                    <%= form.label :logo %> <br>
+                    <%= form.file_field :logo, class:'form-control', type:'file' %> 
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div>
+                    <%= form.label :category %> <br>
+                    <%= form.select :category, ["Science", "Web", "Databases", "Artificial Intelligence", "Programming"], {}, class:'form-control' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <div>
+        <%= form.label :description %> <br>
+        <%= form.rich_text_area :description %> 
+    </div>
+    <br><br>
+    
+    <center>
+    <div class='container'>
+        <%= form.submit class:'btn btn-outline-dark'%>
+    </div>
+    </center>
+
+<% end %>

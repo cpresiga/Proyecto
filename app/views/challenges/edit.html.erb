@@ -1,0 +1,8 @@
+<center>
+    <h1>Editing Challenge</h1>
+</center>
+
+<%= render 'form', challenge: @challenge %>
+
+<%= link_to 'Show', [@course, @topic, @challenge] %> |
+<%= link_to 'Back', course_topic_challenges_path(@topic) %>

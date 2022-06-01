@@ -1,0 +1,121 @@
+
+<style>
+
+.bg-overlay{
+  background: rgba(0,0,0, .7);
+  position: absolute;
+  top: -60px;
+  bottom: -100px;
+  left: 0;
+  right:0;
+  z-index: 0;
+}
+
+video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(facade.jpg) no-repeat;
+    background-size: cover;
+    -webkit-transition: 1s opacity;
+    transition: 1s opacity;
+    z-index: 0;
+}
+.ov-hidden{
+  overflow: hidden;
+}
+</style>
+
+
+<section class="ov-hidden pt-5 pb-5 bg-dark position-relative" style="min-height:100vh; background-image: url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1652&q=80); background-size: cover;">
+<!--video component -->
+
+<video playsinline="" autoplay="true" muted="true" loop="true" poster="http://casagiacometti.com/photo/facade.JPG" id="bgvid">
+  <source src="http://casagiacometti.com/rain.webm" type="video/webm">
+</video>
+  
+<div class="container pt-5 pb-5 position-relative">
+  <div class="row d-flex justify-content-between pt-lg-5 align-items-center">
+    <div class="col-xl-5 col-lg-6 col-md-7 text-center text-lg-left mb-5 mb-lg-0">
+      <h1 class="display-3 font-weight-bold text-white" data-aos="fade-up"><b>Learning Environment</b></h1>
+      <div class="my-4" data-aos="fade-up">
+        <p class="lead text-white" style="background-color: #6351ce ; padding: 15px">The best programmers are not just marginally better than the good ones. It's an order of magnitude greater, as measured by any standard: conceptual creativity, speed, ingenuity, or problem-solving ability.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row justify-content-center">
+        <div class="col-xl-2 col-md-10">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="pt-5 pb-5 bg-light">
+<div class="container  pt-5 pb-5">
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-6">
+      <h3 class=" display-4 font-weight-bold" data-aos="fade-up">Lorem Ipsum is simply dummy</h3>
+      <p class="lead mt-4" data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+      <div class="row row-grid">
+        <div class="col-xs-4 col-md-4 my-1 " data-aos="fade-up">
+          <img src="https://via.placeholder.com/150x45/ccc/ffffff&text" alt="" class="img-fluid">
+        </div>
+        <div class="col-xs-4 col-md-4 my-1" data-aos="fade-up">
+          <img src="https://via.placeholder.com/150x45/ccc/ffffff&text=IMG LOGO" alt="" class="img-fluid">
+        </div>
+        <div class="col-xs-4 col-md-4 my-1" data-aos="fade-up">
+          <img src="https://via.placeholder.com/150x45/ccc/ffffff&text=IMG LOGO" alt="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5" data-aos="fade-up">
+    
+
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="mb-0 mt-0">
+<div class="footer text-white">
+  <div class="bg-dark pt-5 pb-5">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col">
+          <div class="card card-body border-0 mb-0 bg-info text-light px-md-5 py-md-4 shadow-lg" style="overflow:hidden" data-aos="zoom-out-down">
+            <div class="position-relative d-flex flex-column py-md-2 flex-md-row justify-content-between align-items-center">
+              <div class="h3 text-center mb-md-0">Visit my github page</div>
+              <a href="https://github.com/presigah/" class="btn btn-lg btn-light py-md-3 px-md-5 text-info font-weight-bold">
+                GO TO GITHUB >>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- jQuery is required -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({
+  duration: 1200,
+})
+</script>
+

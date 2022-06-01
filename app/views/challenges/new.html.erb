@@ -1,0 +1,24 @@
+<center>
+  <h1>New Challenge</h1>
+</center>
+
+<br>
+<br>
+
+<div class="container">
+  <div class="row gx-1 ">
+
+    <div class="col-md-6">
+        <%= render 'form', challenge: @challenge %>
+    </div>
+
+    <div class="col-md-6">
+    <center>
+    <img src="https://www.zentao.pm/file.php?f=202201/f_18aae8c5f1fb6f21374c49bfb071719a&t=jpg&o=&s=&v=1643524679" class="img-fluid" style="width: 500px; height: 500px" alt="Responsive image">
+    </center>
+    </div>
+
+  </div>
+</div>
+
+<%= link_to 'Back', course_topic_challenges_path(@topic) %>

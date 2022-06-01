@@ -1,0 +1,132 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/codemirror.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/mode/javascript/javascript.min.js"></script>
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-dark" role="alert">
+    <b><%= value %></b>
+  </div>
+<% end %>
+
+<div class="container" style="margin-left: 15px; margin-top: 15px">
+  <%= link_to '←  Back', course_topic_path(@course, @topic, @challenge), class:'btn btn-outline-success rounded-pill'%>
+</div>
+
+
+<br>
+<div class="jumbotron">
+<div class="container">
+  <h1 class="display-3"><%= @challenge.name %></h1> 
+  <p class="lead"><%= @challenge.challenge_description %></p>
+  <hr class="m-y-md">
+  <p> <%= @challenge.output_description%> </p>
+  <h5> your algorithm should have an output identical to: <b style="color: green"> <%= @challenge.output %> </b> </h5>
+</div>
+</div>
+
+
+<form action="<%= @url %>">
+  <input class="form-control form-control-lg form-control-borderless" id='code' type="hidden" placeholder="Search topics or keywords" value="no" name="code">
+  <div class="container">
+  <hr><br><br>
+    <div class="row gx-1 ">
+      <div class="col-lg-4 col-md-6">
+        <spam>Challenge output</spam>
+        <input class="form-control form-control-lg form-control-borderless" disabled type="search" placeholder="Your output must be -> <%= @challenge.output %>">
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <spam>Language</spam>
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" placeholder="Search topics or keywords" name="lenguaje">
+          <option value="cpp">C++</option>
+          <option value="c">C</option>
+          <option value="cs">C sharp</option>
+          <option value="java">Java</option>
+          <option value="py">Python</option>
+          <option value="rb">Ruby</option>
+          <option value="kt">Kotlin</option>
+          <option value="swift">Swift</option>
+        </select>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <% if @challenge_status == true %>
+          <button class="btn btn-lg btn-success" type="submit" onclick="showCode()" disabled style="margin-top:23px">Send</button>
+        <% else %>
+          <button class="btn btn-lg btn-success" type="submit" onclick="showCode()" style="margin-top:23px">Send</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</form>
+  
+<div class="container">
+  <hr>
+  <div class="row gx-1">
+    <div class="col-md-8 border border-success">
+      <textarea id="codeeditor" rows="20" cols="100">
+      <% if @challenge_status == true %>
+        <%= @challange_result.sourcode %>
+      <% else %>
+        <%= @sourcode %>
+      <% end %>
+      </textarea>
+    </div>
+    <div class="col-md-4 border">
+    <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Param</th>
+        <th scope="col">Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Language</td>
+        <td> 
+          <% if @challenge_status == true %>
+            <%= @challange_result.language %>
+          <% else %>
+            <%= @language %> 
+          <% end %>     
+        </td>
+        </tr>
+      <tr>
+        <td>Output</td>
+        <td> 
+          <% if @challenge_status == true %>
+            <%= @challange_result.output %>
+          <% else %>
+            <%= @output %>
+          <% end %> 
+        </td>
+      </tr>
+      <tr>
+        <td>Challenge status</td>
+      <td>           
+        <% if @challenge_status == true %>
+          Sucessul
+        <% else %>
+          Pending
+        <% end %>   
+      </td>
+    </tr>
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>
+<br><br>
+<script type="text/javascript">
+
+  var myCodeMirror = CodeMirror.fromTextArea(document.getElementById("codeeditor"), {
+  mode: "javascript",
+  lineNumbers: true
+});
+
+function showCode()
+{
+    document.getElementById('codeeditor').innerHTML = myCodeMirror.getValue();
+    document.getElementById('code').value = myCodeMirror.getValue();
+}
+
+</script>

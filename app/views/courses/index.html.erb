@@ -1,0 +1,70 @@
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
+
+<center><h1>Courses</h1></center>
+
+<% if user_signed_in? %>
+  <% if return_user.admin.to_i == 1 %>
+    <div class="container">
+    <%= link_to 'New Course', new_course_path, class:'btn btn-outline-dark btn-sm' %>
+    </div>
+  <% end %>
+<% end %>
+
+<br>
+
+<div id="rs-team" class="rs-team fullwidth-team pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+          <% @courses.each do |course| %>
+            <div class="col-lg-4 col-md-6">
+                <div class="team-item">
+                    <div class="team-img">
+                      <%= image_tag (course.course_logo), alt:"team Image", style:"height: 315px!important" %>
+                        <div class="normal-text">
+                            <h4 class="team-name"> <%= course.name %></h4>
+                            <span class="subtitle"><%= course.category %></span>
+                        </div>
+                    </div>
+                    <div class="team-content">
+                        <div class="display-table">
+                            <div class="display-table-cell">
+                                <div class="share-icons">
+                                    <p style="color: white"> <b><%= course.short_description %></b> </p>
+                                </div>
+                                <div class="share-icons">
+                                  <p style="color: white"> <b>Teacher: </b><%= course.teacher_name %> </p>
+                                </div>
+                                <div class="share-icons">
+                                  <p style="color: white"> <b>Course category: </b><%= course.category %> </p>
+                                </div>
+                                <hr>
+                                <div class="team-details">
+                                    <h5 class="team-name">
+                                      <%= link_to course.name, course %>
+                                    </h5>
+                                    <% if user_signed_in? %>
+                                      <% if return_user.admin.to_i == 1 %>
+                                        <%= link_to 'Edit', edit_course_path(course), class:'btn btn-success btn-sm', style:'color:white' %>
+                                        <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-dark btn-sm', style:'color:white' %>                                  
+                                      <% end %>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/holderjs@2.9.4/holder.js"></script>

@@ -1,0 +1,2 @@
+class TopicLog < ApplicationRecord
+end
